@@ -1,42 +1,38 @@
 <HTML>
     <HEAD>
-      <title>My Lego Photo</title>
+      <title>My Brick Photo</title>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="color-scheme" content="light">
       <link rel="stylesheet" href="style.css">
     </HEAD>
     <BODY>
-      <header>
-        <img id="title" src="https://fontmeme.com/permalink/210905/1c4c9cf4f15282757884ef66436fc422.png" alt="My Lego Photo" border="0">
+      <header class="topbar">
+        <div class="topbar__inner">
+          <div class="brand">
+            <div class="brand__title">My Brick Photo</div>
+            <div class="brand__subtitle">Upload a photo → generate a buildable 1×1 brick mosaic</div>
+          </div>
+        </div>
       </header>
 
-      <hr style="width:100%", size="10px", color=black>  
+      <main class="page">
 
-      <!-- intro paragraph-->
-      <div class="intro">
+      <!-- Quick guide (short, minimal) -->
+      <section class="card intro">
         <p>
-        Welcome to <i> My Lego Photo </i>. Simply drag or browse a file to upload your image and then click <bold> generate <bold> to see the result.
-          What appears is a lego photo to be made out of 1 by 1 lego plates for you to build!<br><br>
-          
-          The colours used in the resulting photo are all colours available on <a target="_blank" href="https://www.lego.com/en-us/page/static/pick-a-brick?query=1%20by%201%20circle%20plate&page=1&filters.i0.key=variants.attributes.designNumber&filters.i0.values.i0=6141">lego.com</a> 
-          that can be purchased today. If you don’t like a colour used in the resulting lego photo then you can deselect it in the drop down.<br><br>
-          
-          For greater customization you can also change the scale field. The greater the scale value the fewer lego pieces are required.<br><br>
-          
-          Finally, once you’ve generated a lego photo, building instructions are located at the bottom of the page.<br><br>
-          
-          Check out this example where you input a photo of ironman. <br> Then you can build it like <a target="_blank" href="https://www.lego.com/en-ca/product/marvel-studios-iron-man-31199">this</a>
-          , but for a fraction of the cost.
+          Upload a photo, choose your <b>brick</b> colours, set a scale, then click <b>Generate</b>.
+          The preview appears below, and the page also provides quadrant-by-quadrant build guidance and a parts summary.
           <br><br>
-          <img src="ironman.jpeg" alt="ironman"> <img src="right-arrow.png" alt="ironman"> <img src="MyLegoPhoto.jpeg" alt="ironman resulting img"> 
+          Tip: high-contrast photos usually produce cleaner brick mosaics.
         </p>
-      </div>
+      </section>
 
 
       <!--Drag and Drop html-->
-      <div class="container">
-        <div class="drag-area">
+      <section class="card container">
+        <div class="drag-area" aria-label="Upload image">
           <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
           <header>Drag & Drop to Upload File</header>
           <img id="download-icon" src="file_download.png" alt="download icon" >
@@ -44,15 +40,15 @@
           <button>Browse File</button>
           <input type="file" hidden>
         </div>
-      </div>
+      </section>
       
       <!--customizable input-->
-      <div class="generate" id="generate">
+      <section class="card generate" id="generate">
         <form>
           <div class="multiselect">
             <div class="selectBox" onclick="showCheckboxes()">
               <select id="select_dropdown">
-                <option>Select Lego Colours</option>
+                <option>Select Brick Colours</option>
               </select>
               <div class="overSelect"></div>
             </div>
@@ -98,15 +94,15 @@
         <label for="scale">Scale:</label>
         <input type="text" id="scale" name="scale" size="4" maxlength="4" value="20"><br><br> 
         <button onclick="display_lego_photo();">GENERATE</button>
-      </div>
+      </section>
 
 
       <!--canvas is appended to div output tag -->
-      <div class="output" id="output">
-      </div>
-      <div class="dimensions"><label id="dimensions" hidden></label></div>
+      <section class="card output" id="output"></section>
+      <section class="card dimensions"><label id="dimensions" hidden></label></section>
   
-      <div class="grid" id="grid">
+      <section class="card">
+      <div class="grid" id="grid" aria-label="Quadrant grid">
         <div class="cell">Top Left</div>
         <div class="cell">Top Middle</div>
         <div class="cell">Top Right</div>
@@ -124,9 +120,10 @@
           Continue down the page for a summary of the total pieces required.
         </p>
       </div>
+      </section>
 
       <!--instructions-->
-      <div class="instructions">
+      <section class="card instructions">
         <div class="colors-required">
           <ul id="color-list">
             <!--will dynamically be inserted during runtime-->
@@ -135,15 +132,16 @@
         <div id="build-instructions"></div>
 
         <div class="output_instructions"></div>
-      </div>
+      </section>
 
       
-      <hr style="width:95%; margin: auto;", size="1px", color=black>  
-      <div class="total-legos"></div>
+      <section class="card total-legos"></section>
 
-      <div class="total-cost">
+      <section class="card total-cost">
         <div id="total"></div>
-      </div>
+      </section>
+
+      </main>
 
       <!--footer-->
       <footer>
